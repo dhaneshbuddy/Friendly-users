@@ -1,0 +1,51 @@
+/* Container spacing */
+:host {
+  display: block;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Loading/Error messages */
+div[ngIf="loading"], div[ngIf="error"] {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #555;
+}
+
+div[ngIf="error"] {
+  color: red;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 12px;
+    padding: 6px;
+  }
+}

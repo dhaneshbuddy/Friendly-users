@@ -1,0 +1,24 @@
+<div *ngIf="loading">Loading transactions...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error && transactions.length > 0">
+  <thead>
+    <tr>
+      <th>Transaction Id</th>
+      <th>Machine Id</th>
+      <th>Transaction Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let txn of transactions">
+      <!--<td>{{ txn.METS_Machine_CreateBy}}</td>-->
+      <td>{{ txn.PTMR_Transaction_Id }}</td>
+      <td>{{ txn.MEMR_Machine_Id }}</td>
+      <td>{{ txn.METS_Transaction_Value }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && !error && transactions.length === 0">
+  No transactions found.
+</div>

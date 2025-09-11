@@ -1,0 +1,115 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 230px;
+  background-color : rgba(11, 73, 114, 1);
+  color: black;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logoimage{
+  width: 250px;
+  margin-left: -22px;
+  height: 63px;
+}
+.b{
+    background-color:#35c727d5;
+    border-radius:5px;
+    color: black;
+}
+
+.mat-list-item {
+  color: white;
+}
+.a{
+    color: white;
+}
+
+.active-link {
+  color: white !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.menu-panel {
+  background: transparent !important;
+  color: white;
+  box-shadow: none !important;
+  font-style: italic;
+}
+.b:hover{
+    background: transparent !important;
+  color: white;
+  box-shadow: none !important;
+  font-style: italic;
+}
+
+.mat-expansion-panel-header {
+  color: white;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(11, 73, 114, 1);
+  color:#35c727d5;
+  border-bottom: 1px solid #ddd;
+}
+
+.topbar button {
+  margin-right: 10px;
+}
+
+.topbar mat-icon {
+  color: black !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-icon {
+  margin-right: 4px;
+}
+
+button[mat-icon-button] {
+  margin-left: 10px;
+}
+
+.main-content {
+  
+  background:rgb(241, 238, 238);
+  min-height: calc(100vh - 64px); /* leave space for topbar */
+}
+
+.weather, .day, .clock {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.weather mat-icon,
+.day mat-icon,
+.clock mat-icon {
+  margin-right: 5px;
+}
+
+.menu:hover{
+    background-color:bisque;
+    border-radius: 50px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;  /* circle */
+  object-fit: cover;
+  border: 2px solid #ccc; /* optional outline */
+}
+

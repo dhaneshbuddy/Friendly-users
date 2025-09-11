@@ -1,0 +1,39 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Role -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="SuperUser">Super Admin</mat-option>
+          <mat-option value="User">User</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <button mat-raised-button color="primary" class="full-width" type="submit">
+        Login
+      </button>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </mat-card>
+</div>

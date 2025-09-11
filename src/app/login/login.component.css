@@ -1,0 +1,64 @@
+/* Center the card */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f6f8; /* light background */
+}
+
+/* Card Style */
+.login-card {
+  width: 360px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  text-align: center;
+}
+
+/* Title */
+.login-card h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(11, 73, 114, 1); /* Blue heading */
+}
+
+/* Input Fields */
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Angular Material Overrides */
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-infix {
+  padding: 0 12px;
+}
+
+/* Show/hide password button */
+.mat-icon-button {
+  cursor: pointer;
+}
+
+/* Submit Button */
+button.mat-raised-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: rgba(11, 73, 114, 1);
+  color: white;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+}

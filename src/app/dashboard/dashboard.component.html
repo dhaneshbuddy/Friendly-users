@@ -1,0 +1,82 @@
+<div class="page">
+
+  <!-- ===== KPI CARDS ===== -->
+  <section class="kpi-grid">
+    <div class="kpi-card" *ngFor="let k of kpis">
+      <div class="kpi-top">
+        <span class="kpi-title">{{ k.title | uppercase }}</span>
+        <span class="kpi-icon" [style.background]="k.color">{{ k.icon }}</span>
+      </div>
+      <div class="kpi-value">{{ k.value }}</div>
+
+      <div class="kpi-sub" *ngIf="k.subtext">
+        <span class="trend" [class.up]="k.up" [class.down]="k.up===false">
+          {{ k.up ? '↑' : (k.up===false ? '↓' : '•') }}
+        </span>
+        <span>{{ k.subtext }}</span>
+      </div>
+
+      <!-- progress line only for "Task Progress" -->
+      <div class="progress" *ngIf="k.title === 'Task Progress'">
+        <div class="progress-line">
+          <span class="progress-fill" [style.width]="k.value"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+<br>
+
+  <div class="cards-2col">
+    <!-- ===== SALES (column chart) ===== -->
+    <section class="panel">
+      <div class="panel-header">
+        <h3>Sales</h3>
+        <button class="link">⟳ Sync</button>
+      </div>
+
+      <div class="bars">
+        <div class="bar" *ngFor="let v of monthlySales; let i = index">
+          <div class="bar-bg"></div>
+          <div class="bar-fill" [style.height]="barHeight(v)"></div>
+          <div class="bar-foot">{{ months[i] }}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRAFFIC SOURCE (donut) ===== -->
+    <section class="panel">
+      <div class="panel-header">
+        <h3>Traffic source</h3>
+      </div>
+
+      <div class="donut-wrap">
+        <svg class="donut" viewBox="0 0 160 160" width="240" height="240">
+          <!-- track -->
+          <circle cx="80" cy="80" r="70" class="donut-track"></circle>
+
+          <!-- segments -->
+          <ng-container *ngFor="let t of traffic; let i = index">
+            <circle cx="80" cy="80" r="70"
+                    class="donut-seg"
+                    [attr.stroke]="t.color"
+                    [attr.stroke-dasharray]="dash(t.value)"
+                    [attr.stroke-dashoffset]="offset(i)"></circle>
+          </ng-container>
+        </svg>
+
+        <div class="donut-center">
+          <div class="big">{{ trafficTotal }}%</div>
+          <div class="muted">of goal</div>
+        </div>
+      </div>
+
+      <ul class="legend">
+        <li *ngFor="let t of traffic">
+          <span class="dot" [style.background]="t.color"></span>
+          {{ t.label }} — <b>{{ t.value }}%</b>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+</div>

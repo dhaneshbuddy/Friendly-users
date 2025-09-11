@@ -1,0 +1,71 @@
+<div class="admin-container">
+  <!-- Toolbar -->
+  <mat-toolbar color="primary" class="admin-toolbar">
+    
+    <span>Admin</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+
+  <!-- Body -->
+  <mat-sidenav-container class="sidenav-container">
+    <!-- Sidebar -->
+    <mat-sidenav #drawer mode="side" opened class="sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/users" routerLinkActive="active-link">
+          <mat-icon>people</mat-icon> Manage Users
+        </a>
+        <a mat-list-item routerLink="/reports" routerLinkActive="active-link">
+          <mat-icon>bar_chart</mat-icon> Reports
+        </a>
+        <a mat-list-item routerLink="/analytics" routerLinkActive="active-link">
+          <mat-icon>show_chart</mat-icon> Analytics
+        </a>
+        <a mat-list-item routerLink="/settings" routerLinkActive="active-link">
+          <mat-icon>settings</mat-icon> Settings
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <!-- ✅ Logout inside sidebar -->
+        <a mat-list-item (click)="logout()" class="logout-link">
+          <mat-icon color="warn">logout</mat-icon> Logout
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="main-content">
+      <h2>Welcome, {{ adminName }}</h2>
+
+      <!-- Dashboard Cards -->
+      <div class="card-grid">
+        <mat-card class="dashboard-card">
+          <h3>Total Users</h3>
+          <p>{{ totalUsers }}</p>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
+          <h3>Reports Generated</h3>
+          <p>{{ reports }}</p>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
+          <h3>System Logs</h3>
+          <p>{{ logs }}</p>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
+          <h3>Analytics</h3>
+          <p>{{ analytics }}</p>
+        </mat-card>
+      </div>
+
+      <!-- Actions -->
+        <div class="action-buttons">
+          <button mat-raised-button color="primary">Add User</button>
+          <button mat-raised-button color="accent">Generate Report</button>
+          <button mat-raised-button color="warn">System Settings</button>
+        </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
