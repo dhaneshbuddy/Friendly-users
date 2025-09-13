@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TransactionComponent } from './transaction/transaction.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';   // 👈 Add this
-import { MatOptionModule } from '@angular/material/core';     // 👈 Add this
+import { MatOptionModule } from '@angular/material/core';
+import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ReportsComponent } from './reports/reports.component';
+import { HomeComponent } from './home/home.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { ReportssuperComponent } from './reportssuper/reportssuper.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { SuperhomeComponent } from './superhome/superhome.component';
+import { SuperanalyticsComponent } from './superanalytics/superanalytics.component';
+import { ManageuserlistComponent } from './manageuserlist/manageuserlist.component';     // 👈 Add this
 
 @NgModule({
   declarations: [
@@ -42,7 +52,18 @@ import { MatOptionModule } from '@angular/material/core';     // 👈 Add this
     SuperUserComponent,
     DashboardComponent,
     MachineListComponent,
-    TransactionComponent
+    TransactionComponent,
+    ManageUserComponent,
+    ReportsComponent,
+    HomeComponent,
+    AnalyticsComponent,
+    //HomeeComponent,
+    //SupermanageMachineComponent,
+    ReportssuperComponent,
+    ManageUsersComponent,
+    SuperhomeComponent,
+    SuperanalyticsComponent,
+    ManageuserlistComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +90,9 @@ import { MatOptionModule } from '@angular/material/core';     // 👈 Add this
     MatOptionModule         // ✅ All Material components here
   ],
     
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent],
   exports: [
     MatToolbarModule,

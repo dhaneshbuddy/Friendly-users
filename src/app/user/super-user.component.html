@@ -1,28 +1,43 @@
-<div class="superuser-container">
-  <!-- Toolbar -->
-  <mat-toolbar color="accent" class="superuser-toolbar">
-    
-    <span>Super Admin</span>
-    <span class="spacer"></span>
-  </mat-toolbar>
+<div class="admin-container">
 
   <!-- Body -->
   <mat-sidenav-container class="sidenav-container">
     <!-- Sidebar -->
-    <mat-sidenav #drawer mode="side" [(opened)]="isMenuOpen" class="sidenav">
+    <mat-sidenav #drawer mode="side" opened class="sidenav">
       <mat-nav-list>
-        <a mat-list-item routerLink="/users" routerLinkActive="active-link">
-          <mat-icon>people</mat-icon> View Users
+        <!-- Toolbar -->
+        <mat-toolbar color="primary" class="admin-toolbar">
+          <span class="admin">Super Admin</span>
+          
+        </mat-toolbar>
+        <a mat-list-item routerLink="/super-user/superhome" routerLinkActive="active-link">
+          <mat-icon>home</mat-icon> Home
         </a>
-        <a mat-list-item routerLink="/reports" routerLinkActive="active-link">
+        <br>
+        <a mat-list-item routerLink="/super-user/manageuserlist" routerLinkActive="active-link">
+          <mat-icon>people</mat-icon> Manage User
+        </a>
+        <br>
+        <a mat-list-item routerLink="/super-user/manage-users" routerLinkActive="active-link">
+          <mat-icon>list_alt</mat-icon> Manage Machine
+        </a>
+        <br>
+        <a mat-list-item routerLink="/super-user/reportssuper" routerLinkActive="active-link">
           <mat-icon>bar_chart</mat-icon> Reports
         </a>
-        <a mat-list-item routerLink="/analytics" routerLinkActive="active-link">
+        <br>
+        <a mat-list-item routerLink="/super-user/superanalytics" routerLinkActive="active-link">
           <mat-icon>show_chart</mat-icon> Analytics
-        </a>
+        </a><br>
+        <a mat-list-item routerLink="settings" routerLinkActive="active-link">
+          <mat-icon>settings</mat-icon> Settings
+        </a><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br>
+        
 
         <mat-divider></mat-divider>
 
+        <!-- ✅ Logout inside sidebar -->
         <a mat-list-item (click)="logout()" class="logout-link">
           <mat-icon color="warn">logout</mat-icon> Logout
         </a>
@@ -31,11 +46,15 @@
 
     <!-- Main Content -->
     <mat-sidenav-content class="main-content">
-      <h2>Welcome, {{ superUserName }}</h2>
+      <!--<h2>Welcome, {{ adminName }}</h2>-->
 
-      <div class="card-grid">
+      <!-- ✅ Router outlet for child pages -->
+      <router-outlet></router-outlet>
+
+      <!-- ✅ Dashboard cards should only show on default admin page
+      <div *ngIf="isDashboard" class="card-grid">
         <mat-card class="dashboard-card">
-          <h3>Total Users (View Only)</h3>
+          <h3>Total Users</h3>
           <p>{{ totalUsers }}</p>
         </mat-card>
 
@@ -45,15 +64,15 @@
         </mat-card>
 
         <mat-card class="dashboard-card">
+          <h3>System Logs</h3>
+          <p>{{ logs }}</p>
+        </mat-card>
+
+        <mat-card class="dashboard-card">
           <h3>Analytics</h3>
           <p>{{ analytics }}</p>
         </mat-card>
-      </div>
-
-      <div class="action-buttons">
-        <button mat-raised-button color="accent">Generate Report</button>
-        <button mat-raised-button color="primary">View Analytics</button>
-      </div>
+      </div> -->
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

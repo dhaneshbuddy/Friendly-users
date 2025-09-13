@@ -1,0 +1,39 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+th.mat-header-cell {
+  background-color: #0b4972;
+  color: #fff;
+  font-weight: 600;
+
+  padding: 12px 15px;
+  font-size: 14px;
+  width: 1000px;
+}
+
+td.mat-cell {
+  padding: 12px 15px;
+}
+
+tr.mat-row:hover {
+  background-color:rgb(187, 218, 142);
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  text-transform: none;
+}
+
+button.mat-raised-button:hover {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* Make table scrollable on smaller screens */

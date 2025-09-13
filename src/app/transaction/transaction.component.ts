@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionService, Transaction } from '../transaction.service';
+import { Machine, MachineService } from '../machine.service';
+import { Transaction, TransactionService } from '../transaction.service';
 
 @Component({
   selector: 'app-transaction',
@@ -7,24 +8,39 @@ import { TransactionService, Transaction } from '../transaction.service';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
-  transactions: Transaction[] = [];  // API data
-  loading: boolean = true;           // Loading state
-  error: string = '';                // Error message
+  machines: Machine[] = [];                // Dropdown ku
+  transactions: Transaction[] = [];        // Selected machine transactions
+  selectedMachine: string = '';            // Dropdown value
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(
+    private machineService: MachineService,
+    private transactionService: TransactionService
+  ) {}
 
   ngOnInit(): void {
-    this.transactionService.getTransactions().subscribe({
-      next: (data) => {
-        console.log("API Response:", data);
-        this.transactions = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('API error:', err);
-        this.error = 'Failed to load transactions';
-        this.loading = false;
-      }
+    // Load all machines for dropdown
+    this.machineService.getMachines().subscribe(data => {
+      this.machines = data;
+
+      // ✅ Sort by Machine_Id ascending
+      this.machines.sort((a, b) =>
+        a.MEMR_Machine_Id.localeCompare(b.MEMR_Machine_Id)
+      );
     });
+  }
+
+  // When user selects a machine
+  onMachineChange(): void {
+    if (this.selectedMachine) {
+      this.transactionService.getTransactions(this.selectedMachine).subscribe({
+        next: (data) => {
+          this.transactions = data;
+        },
+        error: (err) => {
+          console.error('Failed to load transactions', err);
+          this.transactions = [];
+        }
+      });
+    }
   }
 }

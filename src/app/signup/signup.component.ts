@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   errorMessage: string = '';
   hidePassword: boolean = true;
@@ -22,11 +22,11 @@ export class SignupComponent {
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      role: ['', Validators.required],
       customerName: ['', [Validators.required, this.capitalizedNameValidator]],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
+      role: ['', Validators.required]   // ✅ Added role
     });
   }
 
@@ -43,23 +43,29 @@ export class SignupComponent {
     return this.signupForm.controls;
   }
 
-  onSubmit() {
-    if (this.signupForm.valid) {
-      const { role, customerName, email, password, confirmPassword } = this.signupForm.value;
-
-      if (password !== confirmPassword) {
-        this.errorMessage = 'Passwords do not match!';
-        return;
-      }
-
-      // Check if email already exists
-      const success: boolean = this.authService.signup({ role, customerName, email, password });
-
-      if (success === true) {
-        this.router.navigate(['/login']);
-      } else {
-        this.errorMessage = 'User already exists with this email or role!';
-      }
-    }
+ onSubmit() {
+  if (this.signupForm.invalid) {
+    this.errorMessage = 'Please fill in all required fields correctly';
+    return;
   }
+
+  const { role, customerName, email, password, confirmPassword } = this.signupForm.value;
+
+  if (password !== confirmPassword) {
+    this.errorMessage = 'Passwords do not match!';
+    return;
+  }
+
+  const userData = { role, customerName, email, password };
+
+  this.authService.signup(userData).subscribe({
+    next: () => {
+      alert('Signup successful');
+      this.router.navigate(['/login']); // ✅ After signup go to login
+    },
+    error: () => {
+      this.errorMessage = 'Signup failed: User may already exist with this email or role';
+    }
+  });
+}
 }

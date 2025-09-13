@@ -1,0 +1,50 @@
+.machine-header, .content {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 8 equal columns */
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  width: 1560px;
+}
+
+.machine-header {
+  font-weight: bold;
+  background: #f4f4f4;
+  border-top: 2px solid #666;
+  margin-top: -33px;
+}
+
+.content:hover {
+  background: #f9f9f9;
+}
+
+/* Style input boxes in the Add row */
+.content input {
+  background: none;      /* no background */
+  border: none;          /* no border */
+  outline: none;         /* remove focus outline */
+  width: 100%;           /* take full width of the column */
+  padding: 4px 0;        /* optional padding for spacing */
+  font-size: inherit;    /* match table font size */
+}
+
+/* Optional: change background slightly on focus for usability */
+.content input:focus {
+  background: #f0f0f0;   /* subtle highlight when editing */
+}
+
+button{
+    background: none;
+    border: none;
+    margin-left: 1543px;
+}
+
+button:hover{
+    background-color:#35c727d5;
+    border-radius: 70px;
+}
+
+mat-icon{
+    color: rgba(11, 73, 114, 1);
+}

@@ -1,75 +1,76 @@
-<!-- Sidebar + Topbar show only if NOT on login/signup -->
+<!-- Sidebar + Topbar -->
 <div *ngIf="!isAuthPage()">
   <mat-sidenav-container class="sidenav-container">
     <!-- Sidebar -->
-    <mat-sidenav #drawer mode="side" class="sidenav" opened>
+    <mat-sidenav #drawer mode="side" class="sidenav" [opened]="false">
       <div class="logo">
-        <img src="../assets/logo.jpg"  class="logoimage" >
-</div>
+        <img src="../assets/logo.jpg" class="logoimage">
+      </div>
 
       <mat-nav-list>
+        <!-- Dashboard -->
         <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" class="b">
           <mat-icon>home</mat-icon> Dashboard
         </a>
         <br>
-        <mat-expansion-panel class="menu-panel" hideToggle class="b">
-          <mat-expansion-panel-header>
+
+        <!-- Machine -->
+        <mat-expansion-panel class="menu-panel" hideToggle>
+          <mat-expansion-panel-header class="b">
             <mat-icon>layers</mat-icon>
             <span>Machine</span>
           </mat-expansion-panel-header>
-
           <mat-action-list>
-            
             <a mat-list-item routerLink="/machine/list" routerLinkActive="active-link" class="a">
               Machine List
             </a>
           </mat-action-list>
-          
         </mat-expansion-panel>
         <br>
-        <a mat-list-item routerLink="/transtaction" routerLinkActive="active-link" class="b" style="color: white;">
+
+        <!-- Transaction -->
+        <a mat-list-item routerLink="/transaction" routerLinkActive="active-link" class="b">
           <mat-icon>history</mat-icon> Transaction
         </a>
+        <br>
       </mat-nav-list>
     </mat-sidenav>
 
-    <!-- Main -->
+    <!-- Main Content -->
     <mat-sidenav-content>
       <mat-toolbar class="topbar">
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
+        <!-- Menu button always visible -->
+        <button mat-icon-button (click)="drawer.toggle()" class="menub"> 
+          <mat-icon class="menuu">menu</mat-icon>
         </button>
         <span class="spacer"></span>
 
-        <!-- 🌤️ Weather -->
+        <!-- Other topbar items -->
         <div class="weather">
           <mat-icon>wb_cloudy</mat-icon>
           <span>{{ temperature }} °C</span>
         </div>
 
-        <!-- 📅 Day -->
         <div class="day">
           <mat-icon>event</mat-icon>
           <span>{{ currentDay }}</span>
         </div>
 
-        <!-- ⏰ Clock -->
         <div class="clock">
           <mat-icon>access_time</mat-icon>
           <span>{{ currentTime }}</span>
         </div>
 
-        <!-- 👤 Profile Menu -->
+        <!-- Profile menu -->
         <button mat-icon-button [matMenuTriggerFor]="profileMenu">
           <img src="https://api.dicebear.com/6.x/adventurer/png?seed=Men1" alt="Profile" class="profile-pic">
         </button>
-
         <mat-menu #profileMenu="matMenu">
-          <button mat-menu-item routerLink="/signup" class="menu">
+          <button mat-menu-item routerLink="/signup" class="menu_SL">
             <mat-icon>person_add</mat-icon>
             <span>Signup</span>
           </button>
-          <button mat-menu-item routerLink="/login" class="menu">
+          <button mat-menu-item routerLink="/login" class="menu_SL">
             <mat-icon>login</mat-icon>
             <span>Login</span>
           </button>
@@ -83,7 +84,7 @@
   </mat-sidenav-container>
 </div>
 
-<!-- Login & Signup page la matrum -->
+<!-- Login & Signup pages -->
 <div *ngIf="isAuthPage()">
   <router-outlet></router-outlet>
 </div>

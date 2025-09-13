@@ -1,26 +1,28 @@
+
 <div *ngIf="loading">Loading machines...</div>
 <div *ngIf="error">{{ error }}</div>
+<br><br>
+<div *ngIf="!loading && !error && machines.length > 0">
+  <!-- Header -->
+  <div class="machine-header">
+    <div>Machine Id</div>
+    <div>Machine No</div>
+    <div>Category</div>
+    <div>Machine Name</div>
+    <div>Description</div>
+    <div>Location</div>
+  </div>
 
-<table *ngIf="!loading && !error && machines.length > 0">
-  <thead>
-    <tr>
-      <th>Machine_No</th>
-      <th>Machine_Category</th>
-      <th>Machine_Name</th>
-      <th>Machine_Discription</th>
-      <th>Machine_Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let machine of machines">
-      <td>{{ machine.MEMR_Machine_No }}</td>
-      <td>{{ machine.MEMR_Machine_Category }}</td>
-      <td>{{ machine.MEMR_Machine_Name }}</td>
-      <td>{{ machine.MEMR_Machine_Discription }}</td>
-      <td>{{ machine.MEMR_Machine_Location }}</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- Rows -->
+  <div *ngFor="let machine of machines" class="content">
+    <div>{{ machine.MEMR_Machine_Id }}</div>
+    <div>{{ machine.MEMR_Machine_No }}</div>
+    <div>{{ machine.MEMR_Machune_Category }}</div>
+    <div>{{ machine.MEMR_Machine_Name }}</div>
+    <div>{{ machine.MEMR_Machine_Discription }}</div>
+    <div>{{ machine.MEMR_Machine_Location }}</div>
+  </div>
+</div>
 
 <div *ngIf="!loading && !error && machines.length === 0">
   No machines found.

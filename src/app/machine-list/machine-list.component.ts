@@ -19,21 +19,27 @@ export class MachineListComponent implements OnInit {
         console.log("API Response:", data);
 
         if (Array.isArray(data)) {
-          // ✅ direct array
           this.machines = data;
         } else if (data.Items && Array.isArray(data.Items)) {
-          // ✅ inside Items
           this.machines = data.Items;
         } else if (data.body) {
-          // ✅ body string → parse
           this.machines = JSON.parse(data.body);
         } else {
-          // fallback
           this.machines = [data];
         }
 
-        console.log("Machines after parse:", this.machines);
+        // ✅ Sort machines by Machine_Id (ascending)
+        this.machines.sort((a, b) =>
+          a.MEMR_Machine_Id.localeCompare(b.MEMR_Machine_Id)
+        );
+
+        console.log("Machines after sort:", this.machines);
         this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load machines';
+        this.loading = false;
+        console.error(err);
       }
     });
   }

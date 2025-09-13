@@ -1,0 +1,55 @@
+<div *ngIf="loading">Loading machines datas...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!loading && !error">
+  <!-- Header -->
+  <div class="machine-header">
+    <div>Machine Id</div>
+    <div>Machine No</div>
+    <div>Machine Name</div>
+    <div>Category</div>
+    <div>Description</div>
+    <div>Location</div>
+    <div>Actions</div>
+    <div>
+      <button class="reload-btn" [disabled]="!reloadEnabled" (click)="reloadMachines()">
+        <mat-icon class=".reload-btn">refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Existing Rows -->
+  <div *ngFor="let machine of machines" class="content">
+    <div>{{ machine.MEMR_Machine_Id }}</div>
+    <div>{{ machine.MEMR_Machine_No }}</div>
+    <div>{{ machine.MEMR_Machine_Name }}</div>
+    <div>{{ machine.MEMR_Machune_Category }}</div>
+    <div>{{ machine.MEMR_Machine_Discription }}</div>
+    <div>{{ machine.MEMR_Machine_Location }}</div>
+    <div>
+      <button class="delete-btn" (click)="deleteMachine(machine.MEMR_Machine_Id)">Delete</button>
+    </div>
+  </div>
+
+  <!-- Add Machine Row -->
+  <div *ngIf="addingMachine" class="content">
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machine_Id" placeholder="Id"></div>
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machine_No" placeholder="No"></div>
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machine_Name" placeholder="Name"></div>
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machune_Category" placeholder="Category"></div>
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machine_Discription" placeholder="Description"></div>
+    <div><input type="text" [(ngModel)]="newMachine.MEMR_Machine_Location" placeholder="Location"></div>
+    
+    <div>
+      <button class="add-btn" (click)="saveMachine()">Save</button>
+    </div>
+    <div>
+      <button class="delete-btn" (click)="cancelAdd()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<br>
+<div>
+  <button class="add-btn" (click)="startAdd()">Add</button>
+</div>

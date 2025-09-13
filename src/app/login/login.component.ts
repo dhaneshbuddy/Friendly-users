@@ -1,5 +1,4 @@
-// login.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -9,31 +8,50 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
   hidePassword: boolean = true;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      role: ['', Validators.required]
+      role: ['', Validators.required] // ✅ Role must match signup role
     });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
-    const { email, password, role } = this.loginForm.value;
-    const success = this.authService.login(email, password, role);
-
-    if (success) {
-      this.router.navigate(['/admin']); // Or your home page
-    } else {
-      this.errorMessage = 'Invalid credentials or you are not allowed to login with this role';
+    if (this.loginForm.invalid) {
+      this.errorMessage = 'Please fill all fields correctly';
+      return;
     }
+
+    const { email, password, role } = this.loginForm.value;
+
+    this.authService.login(email, password, role).subscribe({
+  next: (user) => {
+    if (user.role === 'Admin') {
+      this.router.navigate(['admin/home']);
+    } else if (user.role === 'SuperUser') {
+      this.router.navigate(['super-user/superhome']);
+    } else {
+      this.router.navigate(['/user-home']);
+    }
+  },
+  error: (err) => {
+    this.errorMessage = 'Login failed: ' + err.message;
+  }
+});
   }
 }

@@ -22,16 +22,25 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Select Role</mat-label>
         <mat-select formControlName="role">
+          <mat-option value="SuperUser">Super Admin</mat-option>          
           <mat-option value="Admin">Admin</mat-option>
-          <mat-option value="SuperUser">Super Admin</mat-option>
           <mat-option value="User">User</mat-option>
         </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Portel Id</mat-label>
+        <input matInput formControlName="portel" />
       </mat-form-field>
 
       <!-- Submit -->
       <button mat-raised-button color="primary" class="full-width" type="submit">
         Login
       </button>
+
+      <!--Login Button-->
+<a [routerLink]="['/signup']">Signup..?</a>
+
 
       <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
     </form>

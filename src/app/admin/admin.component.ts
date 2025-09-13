@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +13,17 @@ export class AdminComponent {
   logs: number = 120;
   analytics: string = 'High Usage';
 
-  constructor(private router: Router) {}
+  isDashboard: boolean = true; // ✅ to show/hide dashboard cards
+
+  constructor(private router: Router) {
+    // ✅ check current route and set flag
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isDashboard =
+          event.urlAfterRedirects === '/admin' ;
+      }
+    });
+  }
 
   logout() {
     localStorage.removeItem('user');

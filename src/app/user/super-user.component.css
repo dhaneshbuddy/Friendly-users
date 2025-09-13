@@ -1,12 +1,12 @@
-.superuser-container {
+.admin-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.superuser-toolbar {
-
-  background-color: white !important;
+.admin-toolbar {
+  margin-top: 50px;
+  background-color:  white !important; /* Dark background */
   color: olive !important;
 }
 
@@ -16,12 +16,17 @@
 
 .sidenav-container {
   height: 100%;
+  
 }
 
 .sidenav {
-  width: 250px;
+  width: 230px;
   background-color: white;
   color: white;
+  position: fixed;            /* ✅ always stick on top */
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .mat-list-item {
@@ -29,27 +34,17 @@
 }
 
 .mat-list-item:hover {
-  background-color: White;
+  background-color: rgba(11, 73, 114, 1);
 }
 
 .active-link {
-  background-color: white;
+  background-color: rgba(11, 73, 114, 1);
   font-weight: bold;
-}
-
-.logout-link {
-  margin-top: 10px;
-  color: #ff5252 !important;
-  font-weight: bold;
-}
-
-.logout-link:hover {
-  background-color: #ffcccc;
-  color: #c62828 !important;
 }
 
 .main-content {
- 
+  padding: 20px;
+  background: #f9f9f9;
   height: 100%;
 }
 

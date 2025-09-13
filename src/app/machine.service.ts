@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Machine {
+  MEMR_Machine_Id: string;
   MEMR_Machine_No: string;
   MEMR_Machine_Name: string;
-  MEMR_Machine_Category: string;
+  MEMR_Machune_Category: string;
   MEMR_Machine_Discription: string;
   MEMR_Machine_Location: string;
 }
@@ -14,11 +15,23 @@ export interface Machine {
   providedIn: 'root'
 })
 export class MachineService {
-  private apiUrl = 'https://al3xlg8ob7.execute-api.ap-south-1.amazonaws.com/api/machine/';
+private apiUrl = 'https://al3xlg8ob7.execute-api.ap-south-1.amazonaws.com/api/machine/';
 
   constructor(private http: HttpClient) {}
 
+  // Get all machines
   getMachines(): Observable<Machine[]> {
     return this.http.get<Machine[]>(this.apiUrl);
   }
+
+  // Add a new machine
+  addMachine(machine: Machine): Observable<Machine> {
+    return this.http.post<Machine>(this.apiUrl, machine);
+  }
+
+  // Delete a machine by Id
+  deleteMachine(machineId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${machineId}`);
+  }
 }
+

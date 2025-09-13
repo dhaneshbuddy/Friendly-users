@@ -1,22 +1,101 @@
-table {
-  width: 100%;
-  border-collapse: collapse;
+.machine-header{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 6 equal columns */
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  width: 1510px;
+  margin-left: 100px;  
+  position: relative; /* required for overlay */
+  overflow: hidden;   /* clip the pseudo-element */
+  transition: background 0.3s ease;
 }
 
-th {
-  border: 1px solid rgba(11, 73, 114, 1);
-  padding: 8px;
-  text-align: left;
-}
-
-th {
+.machine-header {
+  font-weight: bold;
   background-color: #35c727d5;
-  color: rgba(11, 73, 114, 1);
+  border-top: 2px solid #666;
 }
 
-td{
-  border: 1px solid rgba(11, 73, 114, 1);
-  padding: 8px;
-  text-align: left;
-  color: black;
+.title{
+  padding-left: 150px;
+}
+
+.titlee{
+  padding-left: 160px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  width: 1510px;
+  margin-left: 100px;
+  position: relative; /* required for overlay */
+  overflow: hidden;   /* clip the pseudo-element */
+  transition: background 0.3s ease;
+}
+
+/* Default background */
+.content {
+  background: none;
+}
+
+/* Hover effect */
+.content:hover {
+  background: rgba(11, 73, 114, 1);
+  color: white;
+}
+
+/* Add fade effect at left & right */
+.content::before,
+.content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px; /* size of fade */
+  pointer-events: none; /* don’t block clicks */
+}
+
+.content::before {
+  left: 0;
+  background: linear-gradient(to right, #ccc, transparent);
+}
+
+.content::after {
+  right: 0;
+  background: linear-gradient(to left, #ccc, transparent);
+}
+
+/* For inputs (if you add editable rows later) */
+.content input {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 4px 0;
+  font-size: inherit;
+}
+
+.content input:focus {
+  background: #f0f0f0;
+}
+
+.box{
+  width: 500px;
+  background: none;
+}
+
+label{
+  font-size: large;
+  font-weight: bold;
+}
+
+p{
+  color: red;
 }

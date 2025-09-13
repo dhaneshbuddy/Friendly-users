@@ -1,0 +1,73 @@
+.machine-header, .content {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+}
+
+.machine-header {
+  font-weight: bold;
+  background: #f4f4f4;
+  border-top: 2px solid #666;
+}
+
+.content:hover {
+  background: #f9f9f9;
+}
+
+/* Style input boxes in the Add row */
+.content input {
+  background: none;      /* no background */
+  border: none;          /* no border */
+  outline: none;         /* remove focus outline */
+  width: 100%;           /* take full width of the column */
+  padding: 4px 0;        /* optional padding for spacing */
+  font-size: inherit;    /* match table font size */
+}
+
+/* Optional: change background slightly on focus for usability */
+.content input:focus {
+  background: #f0f0f0;   /* subtle highlight when editing */
+}
+
+.reload-btn {
+  margin-left: 30px;
+  background: none;   /* no background color */
+  border: none;       /* remove border */
+  padding: 0;         /* remove extra space */
+  cursor: pointer;    /* cursor pointer on hover */
+  outline: none;      /* remove focus outline */
+}
+
+.reload-btn:hover mat-icon {
+  color: #1976d2;     /* optional: icon color change on hover */
+}
+
+.add-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.add-btn:hover {
+  background-color: #45a049;
+  color: black;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+  color: black;
+}

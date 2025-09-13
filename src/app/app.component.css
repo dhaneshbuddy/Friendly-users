@@ -1,11 +1,20 @@
 .sidenav-container {
-  height: 100vh;
+height: 100vh;
+  margin-top: 64px; 
 }
 
 .sidenav {
+  position: fixed;            /* ✅ always stick on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; 
   width: 230px;
   background-color : rgba(11, 73, 114, 1);
   color: black;
+  display: flex;
+  counter-reset: none;
+  margin-top: 63px;
 }
 
 .logo {
@@ -28,6 +37,8 @@
 }
 .a{
     color: white;
+    background-color:#35c727d5;
+    border-radius:5px;
 }
 
 .active-link {
@@ -53,14 +64,35 @@
   color: white;
 }
 
+.menu_SL:hover{
+  background-color: #35c727d5;
+  color: white;
+  border-radius: 15px;
+}
+
 .topbar {
+  position: fixed;            /* ✅ always stick on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;              /* ✅ above other elements */
+  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: rgba(11, 73, 114, 1);
-  color:#35c727d5;
+  color: #35c727d5;
   border-bottom: 1px solid #ddd;
+  padding: 0 10px;
 }
+
+.main-content {
+  background: rgb(241, 238, 238);
+  min-height: calc(100vh - 64px);
+  overflow-y: auto;           /* ✅ content scroll only */
+}
+
+
 
 .topbar button {
   margin-right: 10px;
@@ -83,7 +115,6 @@ button[mat-icon-button] {
 }
 
 .main-content {
-  
   background:rgb(241, 238, 238);
   min-height: calc(100vh - 64px); /* leave space for topbar */
 }
